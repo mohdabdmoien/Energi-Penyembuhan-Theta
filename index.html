@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gelombang Kasih Theta</title>
+<style>
+html, body {
+margin: 0;
+padding: 0;
+background: linear-gradient(to bottom, #fef6f9, #fde0e6);
+font-family: 'Segoe UI', sans-serif;
+height: 100%;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+text-align: center;
+}
+
+h1 {
+font-size: 6vw;
+color: #cc0055;
+margin: 5vh 0 2vh;
+padding: 0 5vw;
+}
+
+#wave {
+width: 40vw;
+height: 40vw;
+border-radius: 50%;
+background: radial-gradient(circle, #ffccdd 20%, #cc0055 70%, transparent 100%);
+animation: pulse 2s infinite;
+display: none;
+margin: 4vh auto;
+}
+
+@keyframes pulse {
+0% { transform: scale(1); opacity: 0.8; }
+50% { transform: scale(1.2); opacity: 1; }
+100% { transform: scale(1); opacity: 0.8; }
+}
+
+input, button {
+font-size: 4vw;
+padding: 3vw;
+margin: 1vh;
+border: none;
+border-radius: 15px;
+}
+
+input {
+width: 80vw;
+border: 1px solid #ccc;
+}
+
+button {
+background-color: #cc0055;
+color: white;
+}
+
+#affirmation {
+font-size: 4vw;
+color: #880044;
+display: none;
+padding: 4vw;
+}
+
+@media (min-width: 768px) {
+h1 { font-size: 2em; }
+input, button, #affirmation { font-size: 1.1em; }
+#wave { width: 200px; height: 200px; }
+}
+</style>
+</head>
+<body>
+<h1>Gelombang Kasih Theta</h1>
+
+<input id="niat" placeholder="Masukkan niat penyembuhan..." />
+
+<div id="wave"></div>
+
+<button onclick="startEnergy()">Mula</button>
+<button onclick="pauseEnergy()">Pause</button>
+<button onclick="stopEnergy()">Hentikan</button>
+
+<div id="affirmation">
+🌸 Energi kasih telah dipancarkan.<br>
+Kesakitan sedang dilembutkan dan diluruhkan...<br><br>
+<strong>"Aku adalah getaran kasih yang menyembuh dan membebas."</strong>
+</div>
+
+<!-- Audio element untuk muzik hang -->
+<audio id="muzikThalura" src="/mnt/data/CELLULAR REPAIR __ RESTORE ALL SYSTEMS DESTROY DECAY! MORPHIC FIELD.wav"></audio>
+
+<script>
+const wave = document.getElementById("wave");
+const affirmation = document.getElementById("affirmation");
+const audio = document.getElementById("muzikThalura");
+
+function startEnergy() {
+wave.style.display = "block";
+affirmation.style.display = "block";
+
+// Mainkan muzik morphic field
+audio.currentTime = 0;
+audio.loop = true;
+audio.volume = 0.7;
+audio.play();
+
+// Getaran telefon
+if ("vibrate" in navigator) {
+navigator.vibrate([300, 100, 300]);
+}
+
+// Papar niat
+const niat = document.getElementById("niat").value;
+if (niat.trim() !== "") {
+affirmation.innerHTML = `
+🌸 Energi kasih telah dipancarkan.<br>
+Kesakitan sedang dilembutkan dan diluruhkan...<br><br>
+<strong>"Aku adalah getaran kasih yang menyembuh dan membebas."</strong>
+<br><br><em>Niat dihantar:</em> ${niat}
+`;
+}
+}
+
+function pauseEnergy() {
+audio.pause();
+wave.style.display = "none";
+if ("vibrate" in navigator) navigator.vibrate(0);
+}
+
+function stopEnergy() {
+audio.pause();
+audio.currentTime = 0;
+wave.style.display = "none";
+affirmation.style.display = "none";
+if ("vibrate" in navigator) navigator.vibrate(0);
+}
+</script>
+</body>
+</html>
